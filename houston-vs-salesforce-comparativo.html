@@ -325,6 +325,164 @@
             font-size: 10px;
             font-family: monospace;
         }
+
+        /* ── MOBILE RESPONSIVE ── */
+        @media (max-width: 700px) {
+
+            body {
+                overflow: auto;
+                height: auto;
+            }
+
+            .presentation {
+                height: auto;
+                min-height: 100vh;
+            }
+
+            /* Top bar */
+            .top-bar {
+                height: auto;
+                padding: 10px 16px;
+                flex-wrap: wrap;
+                gap: 4px;
+            }
+
+            .brand { font-size: 15px; }
+
+            .top-title {
+                font-size: 11px;
+                text-align: center;
+                width: 100%;
+                order: 2;
+            }
+
+            /* Slides container: altura automática no mobile */
+            .slides-container {
+                position: relative;
+                overflow: hidden;
+                flex: none;
+            }
+
+            .slide {
+                position: relative;
+                inset: auto;
+                padding: 16px;
+                transform: none !important;
+                opacity: 0;
+                pointer-events: none;
+                display: none;
+            }
+
+            .slide.active {
+                opacity: 1;
+                display: flex;
+                pointer-events: all;
+            }
+
+            .slide.exit-left {
+                opacity: 0;
+                display: none;
+            }
+
+            /* Slide header */
+            .slide-header {
+                margin-bottom: 12px;
+            }
+
+            .step-badge {
+                font-size: 10px;
+                padding: 3px 12px;
+                margin-bottom: 8px;
+            }
+
+            .step-title {
+                font-size: 18px;
+                line-height: 1.3;
+            }
+
+            /* Comparison: empilha verticalmente */
+            .comparison {
+                flex-direction: column;
+                gap: 0;
+                align-items: stretch;
+                flex: none;
+            }
+
+            .platform-col {
+                flex: none;
+                width: 100%;
+            }
+
+            .platform-label {
+                font-size: 12px;
+                margin-bottom: 8px;
+                padding: 0 4px;
+            }
+
+            /* Imagem: altura fixa razoável no mobile */
+            .screen-frame {
+                height: 200px;
+                flex: none;
+                border-radius: 10px;
+            }
+
+            /* VS divider: horizontal entre as 2 telas */
+            .vs-divider {
+                width: 100%;
+                height: 36px;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .vs-badge {
+                width: 32px;
+                height: 32px;
+                font-size: 11px;
+            }
+
+            /* Legendas: full width, sem gap lateral */
+            .comparison > div[style*="display:flex"],
+            .comparison > div[style*="display: flex"] {
+                flex-direction: column !important;
+                gap: 12px !important;
+            }
+
+            /* Bottom bar */
+            .bottom-bar {
+                height: 56px;
+                gap: 10px;
+                position: sticky;
+                bottom: 0;
+                z-index: 10;
+                background: rgba(10,14,26,0.97);
+            }
+
+            .nav-btn {
+                width: 36px;
+                height: 36px;
+                font-size: 16px;
+            }
+
+            .dot { width: 8px; height: 8px; }
+            .dot.active { width: 22px; }
+
+            /* Progress bar: acima da bottom bar */
+            .progress-track {
+                bottom: 56px;
+            }
+
+            /* Etapa 6 — Ganhos e Próximos desenvolvimentos */
+            .slide[data-index="5"] .comparison {
+                flex-direction: column !important;
+                gap: 16px !important;
+                padding: 0 !important;
+            }
+
+            .slide[data-index="5"] .comparison > div {
+                flex: none !important;
+                width: 100% !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -367,13 +525,12 @@
                     </div>
                 </div>
                 <!-- Legenda Etapa 1 abaixo das telas -->
-                <div style="display:flex; gap:60px; padding: 12px 8px 4px 8px; flex-shrink:0;">
-                    <div style="flex:1; text-align:center; font-size:13px; color:rgba(255,255,255,0.65); line-height:1.5;">
-                        Na Salesforce, a configuração inicial exige acessar o <strong style="color:#00A1E0;">Content Builder</strong> para fazer o upload do criativo e configurar o canal separadamente — são múltiplos acessos em ferramentas distintas antes de sequer começar o fluxo da campanha.
+                <div style="display:flex; flex-wrap:wrap; gap:16px; padding: 12px 8px 4px 8px; flex-shrink:0;"><div style="flex:1; min-width:260px; text-align:center; font-size:13px; color:rgba(255,255,255,0.65); line-height:1.5;">
+                        Na Salesforce, a configuração inicial exige acessar o Content Builder para fazer o upload do criativo e configurar o canal separadamente — são acessos em ferramentas diferentes antes de começar o fluxo da campanha.
                     </div>
                     <div style="width:60px; flex-shrink:0;"></div>
                     <div style="flex:1; text-align:center; font-size:13px; color:rgba(255,255,255,0.65); line-height:1.5;">
-                        No Houston, o início é direto: o operador preenche apenas os dados essenciais da campanha em uma tela guiada. <strong style="color:#4ADE80;">Sem abas extras, sem uploads separados</strong> — tudo começa no mesmo lugar.
+                        No Houston, o usuário preenche os dados essenciais da campanha em uma tela guiada. Sem abas extras, sem uploads separados.
                     </div>
                 </div>
             </div>            <div class="slide " data-index="1">
@@ -405,13 +562,12 @@
                     </div>
                 </div>
                 <!-- Legenda Etapa 2 -->
-                <div style="display:flex; gap:60px; padding: 12px 8px 4px 8px; flex-shrink:0;">
-                    <div style="flex:1; text-align:center; font-size:13px; color:rgba(255,255,255,0.65); line-height:1.5;">
-                        Na Salesforce, a definição de conteúdo passa pelo <strong style="color:#00A1E0;">Journey Builder</strong>: o operador precisa configurar a segmentação, o agendamento e o canal em nós separados do fluxo — cada ajuste exige navegar entre diferentes partes da interface.
+                <div style="display:flex; flex-wrap:wrap; gap:16px; padding: 12px 8px 4px 8px; flex-shrink:0;"><div style="flex:1; min-width:260px; text-align:center; font-size:13px; color:rgba(255,255,255,0.65); line-height:1.5;">
+                        Na Salesforce, a definição de conteúdo passa pelo Journey Builder: o usuário configura a segmentação, o agendamento e o canal em nós (etapas) separados do fluxo — cada ajuste exige navegar entre diferentes partes da interface.
                     </div>
                     <div style="width:60px; flex-shrink:0;"></div>
                     <div style="flex:1; text-align:center; font-size:13px; color:rgba(255,255,255,0.65); line-height:1.5;">
-                        No Houston, segmentação, data/hora de disparo e canal são definidos em uma <strong style="color:#4ADE80;">única tela sequencial</strong> — sem saltar entre módulos. O operador avança etapa por etapa com clareza do que já foi preenchido.
+                        No Houston, segmentação, data/hora de disparo e canal são definidos em uma única tela sequencial — sem saltar entre módulos. O usuário avança etapa por etapa com visão do que já foi preenchido.
                     </div>
                 </div>
             </div>            <div class="slide " data-index="2">
@@ -443,13 +599,12 @@
                     </div>
                 </div>
                 <!-- Legenda Etapa 3 -->
-                <div style="display:flex; gap:60px; padding: 12px 8px 4px 8px; flex-shrink:0;">
-                    <div style="flex:1; text-align:center; font-size:13px; color:rgba(255,255,255,0.65); line-height:1.5;">
-                        Na Salesforce, a configuração do canal InApp exige acessar o <strong style="color:#00A1E0;">Message Configuration</strong> dentro do Journey Builder — uma área separada onde o operador seleciona ou cria a mensagem, vinculando ao Content Builder. São múltiplos cliques fora do fluxo principal.
+                <div style="display:flex; flex-wrap:wrap; gap:16px; padding: 12px 8px 4px 8px; flex-shrink:0;"><div style="flex:1; min-width:260px; text-align:center; font-size:13px; color:rgba(255,255,255,0.65); line-height:1.5;">
+                        Na Salesforce, a configuração do canal InApp exige acessar o Message Configuration dentro do Journey Builder — uma área separada onde o usuário seleciona ou cria a mensagem, vinculando ao Content Builder.
                     </div>
                     <div style="width:60px; flex-shrink:0;"></div>
                     <div style="flex:1; text-align:center; font-size:13px; color:rgba(255,255,255,0.65); line-height:1.5;">
-                        No Houston, a configuração do canal acontece <strong style="color:#4ADE80;">dentro da própria jornada de campanha</strong> — o operador escolhe o formato da mensagem (<strong style="color:#4ADE80;">Modal</strong> ou <strong style="color:#4ADE80;">Fullscreen</strong>), faz o upload da imagem, define o botão de ação e o tipo de ação sem sair da tela. Tudo em um único fluxo guiado, sem interrupções.
+                        No Houston, a configuração do canal acontece dentro da própria jornada de campanha — o usuário escolhe o formato da mensagem (Modal ou Fullscreen), faz o upload da imagem, define o botão de ação e o tipo de ação sem sair da tela.
                     </div>
                 </div>
             </div>            <div class="slide " data-index="3">
@@ -481,8 +636,7 @@
                     </div>
                 </div>
                 <!-- Legenda Etapa 4 -->
-                <div style="display:flex; gap:60px; padding: 12px 8px 4px 8px; flex-shrink:0;">
-                    <div style="flex:1; text-align:center; font-size:13px; color:rgba(255,255,255,0.65); line-height:1.5;">
+                <div style="display:flex; flex-wrap:wrap; gap:16px; padding: 12px 8px 4px 8px; flex-shrink:0;"><div style="flex:1; min-width:260px; text-align:center; font-size:13px; color:rgba(255,255,255,0.65); line-height:1.5;">
                         Na Salesforce, o preview exige navegar entre diferentes telas do Journey Builder para visualizar como a mensagem será exibida — o operador precisa sair do fluxo de configuração para conferir o resultado final.
                     </div>
                     <div style="width:60px; flex-shrink:0;"></div>
@@ -519,13 +673,12 @@
                     </div>
                 </div>
                 <!-- Legenda Etapa 5 -->
-                <div style="display:flex; gap:60px; padding: 12px 8px 4px 8px; flex-shrink:0;">
-                    <div style="flex:1; text-align:center; font-size:13px; color:rgba(255,255,255,0.65); line-height:1.5;">
+                <div style="display:flex; flex-wrap:wrap; gap:16px; padding: 12px 8px 4px 8px; flex-shrink:0;"><div style="flex:1; min-width:260px; text-align:center; font-size:13px; color:rgba(255,255,255,0.65); line-height:1.5;">
                         Na Salesforce, a etapa de revisão exige percorrer todos os nós do Journey Builder para validar cada configuração individualmente — agendamento, segmentação, mensagem e canal precisam ser conferidos em telas separadas antes de ativar a campanha.
                     </div>
                     <div style="width:60px; flex-shrink:0;"></div>
                     <div style="flex:1; text-align:center; font-size:13px; color:rgba(255,255,255,0.65); line-height:1.5;">
-                        No Houston, a revisão é um <strong style="color:#4ADE80;">resumo consolidado em tela única</strong> — todas as configurações da campanha aparecem lado a lado antes da publicação. Um clique em "Revisar e publicar" e a campanha está no ar.
+                        No Houston, a revisão é um resumo consolidado em tela única — todas as configurações da campanha aparecem lado a lado antes da publicação. Um clique em "Revisar e publicar" e a campanha está pronta para aprovação da governança.
                     </div>
                 </div>
             </div>
@@ -543,7 +696,7 @@
                             <div style="flex:1; min-width:220px;">
                                 <div style="font-size:22px; font-weight:800; color:var(--green-400);">8h → minutos</div>
                                 <div style="font-size:13px; color:#D1FADF; margin-top:4px; line-height:1.5;">
-                                    Tempo de início do disparo de InApp — a Salesforce leva ~8 horas para começar a replicar e gera fila entre campanhas. <strong style="color:var(--green-400);">Houston começa em minutos.</strong>
+                                    Tempo de início do disparo de InApp — a Salesforce leva ~8 horas para começar a replicar e gera fila entre campanhas. <strong style="color:var(--green-400);">Houston começa em minutos, após aprovação da governança.</strong>
                                 </div>
                             </div>
                             <div style="flex:1; min-width:220px;">
@@ -563,28 +716,29 @@
                                 <span style="font-size:18px; flex-shrink:0;">📣</span>
                                 <div style="font-size:13px; color:rgba(255,255,255,0.65); line-height:1.5;">
                                     <strong style="color:rgba(255,255,255,0.85);">Novos canais</strong><br>
-                                    Push, SMS, WhatsApp e e-mail chegando em breve.
+                                    Push, SMS, WhatsApp — em desenvolvimento.<br>
+                                    DM e E-mail — planejado.
                                 </div>
                             </div>
                             <div style="flex:1; min-width:180px; display:flex; gap:10px; align-items:flex-start;">
                                 <span style="font-size:18px; flex-shrink:0;">🔀</span>
                                 <div style="font-size:13px; color:rgba(255,255,255,0.65); line-height:1.5;">
                                     <strong style="color:rgba(255,255,255,0.85);">Orquestrador de campanhas</strong><br>
-                                    Automação cross-canal com lógica condicional — em construção.
+                                    Automação cross-canal com lógica condicional — em desenvolvimento.
                                 </div>
                             </div>
                             <div style="flex:1; min-width:180px; display:flex; gap:10px; align-items:flex-start;">
                                 <span style="font-size:18px; flex-shrink:0;">💰</span>
                                 <div style="font-size:13px; color:rgba(255,255,255,0.65); line-height:1.5;">
                                     <strong style="color:rgba(255,255,255,0.85);">Rateio por centro de custos</strong><br>
-                                    Visibilidade financeira por BU — em desenvolvimento.
+                                    Visibilidade financeira por BU — planejado.
                                 </div>
                             </div>
                             <div style="flex:1; min-width:180px; display:flex; gap:10px; align-items:flex-start;">
                                 <span style="font-size:18px; flex-shrink:0;">🎯</span>
                                 <div style="font-size:13px; color:rgba(255,255,255,0.65); line-height:1.5;">
                                     <strong style="color:rgba(255,255,255,0.85);">Integração com o Growth Dash</strong><br>
-                                    Regras de cashback definidas diretamente no <strong style="color:#4ADE80;">Growth Dash</strong> — as campanhas do Houston já nascem conectadas às políticas de cashback vigentes, eliminando configurações manuais e garantindo consistência entre as ofertas e as campanhas disparadas.
+                                    Regras de cashback definidas diretamente no <strong style="color:#4ADE80;">Growth Dash</strong> — as campanhas do Houston já nascem conectadas às políticas de cashback vigentes, eliminando configurações manuais e garantindo consistência entre as ofertas e as campanhas disparadas — planejado.
                                 </div>
                             </div>
                         </div>
